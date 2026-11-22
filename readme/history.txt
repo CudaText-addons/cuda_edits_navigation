@@ -1,3 +1,5 @@
+2026.11.21
+- fix: avoid deprecated API: get_filename
 
 2021.09.21
 - fix: crash when working with CudaExt action "Align carets columns" (thanks Markus)

@@ -29,7 +29,7 @@ class Command:
 
 
     def to_last_edit(self):  # menu item, for keyboard shortcut 
-      f = ed.get_filename()
+      f = ed.get_prop(PROP_FN, '')
         
       if f in self.edited_lines:
         ind = self.deque_inds.setdefault(f, 0)
@@ -46,7 +46,7 @@ class Command:
       self.save_edit_pos(ed_self)      
 
       #if shifted:
-        #f = ed_self.get_filename() 
+        #f = ed_self.get_prop(PROP_FN, '') 
         #print(f' == {self.edited_lines.get(f)}')
       
       
@@ -57,7 +57,7 @@ class Command:
     def shift_lines(self, ed_self):
       """if number of lines in file changed - shift saved edited lines accordingly
       """
-      f = ed_self.get_filename() 
+      f = ed_self.get_prop(PROP_FN, '') 
       lc = ed_self.get_line_count()
       last_lc = self.line_counts.setdefault(f, lc) # default is 'lc' - cant shift properly if dont know previous line count, so whatever
 
@@ -98,7 +98,7 @@ class Command:
       carets = ed_self.get_carets()
       if not carets: return  
       line = carets[0][1] # y of first caret
-      f = ed_self.get_filename() 
+      f = ed_self.get_prop(PROP_FN, '') 
        
       if f not in self.edited_lines:
         self.edited_lines[f] = deque([0], dqlen) 
